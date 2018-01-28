@@ -28,3 +28,5 @@ use think\Route;
 Route::get('hello/:id', 'sample/test/hello');
 //Route::post('hello', 'sample/test/hello');
 //Route::any('hello', 'sample/test/hello');
+
+Route::post('hello2', 'sample/test/hello2');
