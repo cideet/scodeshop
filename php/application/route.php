@@ -21,6 +21,9 @@
 
 use think\Route;
 
+Route::get('banner/:id', 'api/v1.Banner/getBanner');
+
+
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');
 
 //Route::rule('hello', 'sample/test/hello');
