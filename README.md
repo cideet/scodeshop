@@ -12,6 +12,8 @@
 
 查看端口占用 netstat -ano <br>
 
+http://127.0.0.3/index.php/sample/test/hello <br>
+
 
 
 
