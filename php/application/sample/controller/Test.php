@@ -10,8 +10,9 @@ namespace app\sample\controller;
 
 class Test
 {
-    public function hello()
+    public function hello($id, $name)
     {
+        echo($id . '|' . $name);
         return 'hello world !';
     }
 }
