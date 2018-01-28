@@ -22,7 +22,8 @@ class Test
         $age = \think\Request::instance()->param('age');
         $name = \think\Request::instance()->param('name');
         echo($id . '|' . $name . '|' . $age);
-        $all = \think\Request::instance()->param();
+        // $all = \think\Request::instance()->param();
+        $all = input('param');
         print_r($all);
     }
 }
