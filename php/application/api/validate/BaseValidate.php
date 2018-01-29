@@ -8,16 +8,24 @@
 
 namespace app\api\validate;
 
+use app\lib\exception\ParameterException;
+use think\Exception;
+use think\Request;
+
 class BaseValidate extends \think\Validate
 {
     public function goCheck()
     {
-        $request = \think\Request::instance();
+        $request = Request::instance();  //获取http传入的参数
         $params = $request->param();
-        $result = $this->check($params);
+        $result = $this->batch()->check($params);
         if (!$result) {
-            $error = $this->error;
-            throw new \think\Exception($error);
+            $e = new ParameterException([
+                'msg' => $this->error,
+                //'code' => 400,
+                //'errorCode' => 10002
+            ]);
+            throw $e;
         } else {
             return true;
         }

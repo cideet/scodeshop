@@ -12,7 +12,7 @@ class Banner
 {
     public static function getBannerByID($id)
     {
-//        return 'this is banner info';
+        // return 'this is banner info';
         return null;
     }
 }

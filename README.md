@@ -17,6 +17,8 @@ http://127.0.0.3/index.php/sample/test/hello <br>
 豆瓣开放API github开放API <br>
 
 999 未知错误或者是不想让客户端知道的错误 <br>
+10000 参数错误 <br>
+
 
 
 
