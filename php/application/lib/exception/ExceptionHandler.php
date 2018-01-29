@@ -31,7 +31,7 @@ class ExceptionHandler extends Handle
                 return parent::render($e);
             } else {
                 $this->code = 500;
-                $this->msg = '服务器内部错误，不想告诉你';
+                $this->msg = 'sorry，we make a mistake. (^o^)Y';
                 $this->errorCode = 999;
                 $this->recordErrorLog($e);
             }
