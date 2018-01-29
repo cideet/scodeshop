@@ -14,4 +14,10 @@ class Image extends Model
 {
     protected $hidden = ['delete_time', 'update_time'];
 
+    //读取器
+    public function getUrlAttr($value)
+    {
+        return config('setting.img_prefix') . $value;
+    }
+
 }
