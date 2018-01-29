@@ -12,6 +12,9 @@ use think\Model;
 
 class BannerItem extends Model
 {
+    protected $hidden = ['delete_time', 'update_time'];
+    //protected $visible = ['id'];
+
     public function img()
     {
         return $this->belongsTo('Image', 'img_id', 'id');

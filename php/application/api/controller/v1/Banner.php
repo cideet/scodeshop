@@ -30,7 +30,10 @@ class Banner
         //$banner = BannerModel::getBannerByID($id);  //作用同上
 
         //$banner = BannerModel::with('items')->find($id);
-        $banner = BannerModel::with(['items', 'items.img'])->find($id);
+//        $banner = BannerModel::with(['items', 'items.img'])->find($id);
+        $banner = BannerModel::getBannerByID($id);
+        //$banner->hidden(['update_time','delete_time']);  //隐藏某些字段
+        //$banner->visible(['id']);  //只显示某些字段
         if (!$banner) {
             throw new BannerMissException();
         }
