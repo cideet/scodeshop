@@ -12,7 +12,7 @@ class Banner
 {
     public static function getBannerByID($id)
     {
-        // return 'this is banner info';
-        return null;
+        $result = \think\Db::query('select * from banner_item where banner_id=?', [$id]);
+        return $result;
     }
 }

@@ -27,6 +27,6 @@ class Banner
         if (!$banner) {
             throw new Exception('内部错误');
         }
-        return $banner;
+        return json($banner);
     }
 }
