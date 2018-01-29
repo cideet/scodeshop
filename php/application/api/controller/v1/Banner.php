@@ -26,8 +26,11 @@ class Banner
         (new IDMustBePostiveInt())->goCheck();
         //$banner = new BannerModel();  //实例化后，对应表banner了
         //$banner = $banner->get($id);
-        $banner = BannerModel::get($id);  //建议使用静态方法
+//        $banner = BannerModel::get($id);  //建议使用静态方法
         //$banner = BannerModel::getBannerByID($id);  //作用同上
+
+        //$banner = BannerModel::with('items')->find($id);
+        $banner = BannerModel::with(['items', 'items.img'])->find($id);
         if (!$banner) {
             throw new BannerMissException();
         }

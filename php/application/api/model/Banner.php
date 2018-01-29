@@ -12,6 +12,13 @@ use think\Model;
 
 class Banner extends Model
 {
+    public function items()
+    {
+        return $this->hasMany('BannerItem', 'banner_id', 'id');
+        //hasMany:1对多
+        //关联模型的模型名，外键，当前模型的主键
+    }
+
     public static function getBannerByID($id)
     {
         // find select update insert delete
