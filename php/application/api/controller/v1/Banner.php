@@ -24,10 +24,13 @@ class Banner
     public function getBanner($id)
     {
         (new IDMustBePostiveInt())->goCheck();
-        $banner = BannerModel::getBannerByID($id);
+        //$banner = new BannerModel();  //实例化后，对应表banner了
+        //$banner = $banner->get($id);
+        $banner = BannerModel::get($id);  //建议使用静态方法
+        //$banner = BannerModel::getBannerByID($id);  //作用同上
         if (!$banner) {
             throw new BannerMissException();
         }
-        return json($banner);
+        return $banner;
     }
 }
