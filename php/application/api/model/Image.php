@@ -8,20 +8,14 @@
 
 namespace app\api\model;
 
-use think\Model;
-
-class Image extends Model
+class Image extends BaseModel
 {
     protected $hidden = ['delete_time', 'update_time'];
 
-    //读取器
+    //重写基类prefixUrl方法，使url自动加上前缀
     public function getUrlAttr($value, $data)
     {
-        $finalUrl = $value;
-        if ($data['from'] == 1) {
-            $finalUrl = config('setting.img_prefix') . $value;
-        }
-        return $finalUrl;
+        return $this->prefixUrl($value, $data);
     }
 
 }

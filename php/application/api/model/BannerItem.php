@@ -8,9 +8,7 @@
 
 namespace app\api\model;
 
-use think\Model;
-
-class BannerItem extends Model
+class BannerItem extends BaseModel
 {
     protected $hidden = ['delete_time', 'update_time'];
     //protected $visible = ['id'];
