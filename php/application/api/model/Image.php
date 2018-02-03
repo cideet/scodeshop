@@ -15,7 +15,7 @@ class Image extends BaseModel
     //重写基类prefixUrl方法，使url自动加上前缀
     public function getUrlAttr($value, $data)
     {
-        return $this->prefixUrl($value, $data);
+        return $this->prefixImgUrl($value, $data);
     }
 
 }

@@ -16,7 +16,7 @@ class BaseModel extends Model
 
     //url加前缀
     //public function getUrlAttr($value, $data)
-    public function prefixUrl($value, $data)
+    public function prefixImgUrl($value, $data)
     {
         $finalUrl = $value;
         if ($data['from'] == 1) {
