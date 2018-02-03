@@ -18,7 +18,7 @@ class Product
     {
         (new Count())->goCheck();
         $products = ProductModel::getMostRecent($count);
-        if (!$products) {
+        if ($products->isEmpty()) {
             throw new ProductException();
         }
         $collection = collection($products);  //数据集

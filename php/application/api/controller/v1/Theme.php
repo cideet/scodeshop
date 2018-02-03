@@ -26,7 +26,7 @@ class Theme extends Controller
         $validate->goCheck();
         $ids = explode(',', $ids);
         $result = ThemeModel::with('topicImg,headImg')->select($ids);
-        if (!$result) {
+        if ($result->isEmpty()) {
             throw new ThemeException();
         }
         return $result;
@@ -40,7 +40,7 @@ class Theme extends Controller
     {
         (new IDMustBePositiveInt())->goCheck();
         $theme = ThemeModel::getThemeWithProducts($id);
-        if (!$theme) {
+        if ($theme->isEmpty()) {
             throw new ThemeException();
         }
         return $theme;
