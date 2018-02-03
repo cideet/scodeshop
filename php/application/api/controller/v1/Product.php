@@ -21,6 +21,8 @@ class Product
         if (!$products) {
             throw new ProductException();
         }
+        $collection = collection($products);  //数据集
+        $products = $collection->hidden(['summary']);
         return $products;
     }
 }
