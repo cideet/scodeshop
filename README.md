@@ -18,6 +18,7 @@ http://127.0.0.3/index.php/sample/test/hello <br>
 
 http://127.0.0.3/index.php/api/v1/banner/1 <br>
 http://127.0.0.3/index.php/api/v1/theme?ids=1,2,3 <br>
+http://127.0.0.3/index.php/api/v1/product/recent?count=10 <br>
 
 
 999  未知错误 <br>

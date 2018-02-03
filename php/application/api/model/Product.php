@@ -8,7 +8,6 @@
 
 namespace app\api\model;
 
-
 class Product extends BaseModel
 {
     /**
@@ -31,4 +30,11 @@ class Product extends BaseModel
     {
         return $this->prefixImgUrl($value, $data);
     }
+
+    public static function getMostRecent($count)
+    {
+        $products = self::limit($count)->order('create_time desc')->select();
+        return $products;
+    }
+
 }
