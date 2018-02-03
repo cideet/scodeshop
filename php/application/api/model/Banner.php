@@ -14,8 +14,7 @@ class Banner extends BaseModel
 
     public function items()
     {
-        return $this->hasMany('BannerItem', 'banner_id', 'id');
-        //hasMany:1对多
+        return $this->hasMany('BannerItem', 'banner_id', 'id');  //hasMany:一对多
         //关联模型的模型名，外键，当前模型的主键
     }
 

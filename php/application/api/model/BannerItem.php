@@ -15,8 +15,7 @@ class BannerItem extends BaseModel
 
     public function img()
     {
-        return $this->belongsTo('Image', 'img_id', 'id');
-        //belongsTo:1对1
+        return $this->belongsTo('Image', 'img_id', 'id');  //belongsTo:一对一
         //关联模型的模型名，外键，当前模型的主键
     }
 }

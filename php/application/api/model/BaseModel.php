@@ -12,6 +12,8 @@ use think\Model;
 
 class BaseModel extends Model
 {
+    protected $hidden = ['delete_time'];
+
     //url加前缀
     //public function getUrlAttr($value, $data)
     public function prefixUrl($value, $data)

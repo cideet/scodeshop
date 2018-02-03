@@ -10,7 +10,7 @@ namespace app\api\model;
 
 class Image extends BaseModel
 {
-    protected $hidden = ['delete_time', 'update_time'];
+    protected $hidden = ['update_time', 'delete_time', 'id', 'from'];
 
     //重写基类prefixUrl方法，使url自动加上前缀
     public function getUrlAttr($value, $data)
