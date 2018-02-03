@@ -22,4 +22,23 @@ class Theme extends BaseModel
     {
         return $this->belongsTo('Image', 'head_img_id', 'id');  //一对一
     }
+
+    /**
+     * 查询多个专题
+     */
+    public function products()
+    {
+        return $this->belongsToMany('product', 'theme_product', 'product_id', 'theme_id');  //多对多
+        //theme_product是中间表
+    }
+
+    /**
+     * @param $id
+     * @return 单个专题
+     */
+    public static function getThemeWithProducts($id)
+    {
+        $theme = self::with('products,topicImg,headImg')->find($id);
+        return $theme;
+    }
 }
