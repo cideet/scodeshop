@@ -27,6 +27,7 @@ Route::get('api/:version/theme', 'api/:version.Theme/getSimpleList');
 Route::get('api/:version/theme/:id', 'api/:version.Theme/getComplexOne');
 Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
+Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
 
 
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');

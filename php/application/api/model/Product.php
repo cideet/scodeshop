@@ -31,9 +31,26 @@ class Product extends BaseModel
         return $this->prefixImgUrl($value, $data);
     }
 
+    /**
+     * 获取指定数量的最近商品
+     */
     public static function getMostRecent($count)
     {
         $products = self::limit($count)->order('create_time desc')->select();
+        return $products;
+    }
+
+    /**
+     * 获取某分类下商品
+     * @param $categoryID
+     * @param int $page
+     * @param int $size
+     * @param bool $paginate
+     * @return \think\Paginator
+     */
+    public static function getProductsByCategoryID($categoryId)
+    {
+        $products = self::where('category_id', '=', $categoryId)->select();
         return $products;
     }
 
