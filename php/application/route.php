@@ -29,6 +29,8 @@ Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
 Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
 
+Route::post('api/:version/token/user', 'api/:version.Token/getToken');
+
 
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');
 
