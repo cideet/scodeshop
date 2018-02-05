@@ -44,8 +44,9 @@ class UserToken
 
     private function grantToken($wxResult)
     {
+        //
         $openid = $wxResult['openid'];
-        return (json_decode($wxResult));
+
     }
 
     protected function processLoginError($wxResult)
