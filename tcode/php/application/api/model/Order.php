@@ -1,8 +1,15 @@
 <?php
+/**
+ * Created by 七月.
+ * Author: 七月
+ * Date: 2017/5/31
+ * Time: 13:07
+ */
 
 namespace app\api\model;
 
-use think\Model;
+
+use think\Paginator;
 
 class Order extends BaseModel
 {
@@ -11,7 +18,8 @@ class Order extends BaseModel
 
     public function getSnapItemsAttr($value)
     {
-        if(empty($value)){
+        if (empty($value))
+        {
             return null;
         }
         return json_decode($value);
@@ -21,25 +29,20 @@ class Order extends BaseModel
         if(empty($value)){
             return null;
         }
-        return json_decode(($value));
+        return json_decode($value);
     }
-    
-    public static function getSummaryByUser($uid, $page=1, $size=15)
+
+    public static function getSummaryByUser($uid, $page = 1, $size = 15)
     {
         $pagingData = self::where('user_id', '=', $uid)
             ->order('create_time desc')
             ->paginate($size, true, ['page' => $page]);
-        return $pagingData ;
+        return $pagingData;
     }
 
     public static function getSummaryByPage($page=1, $size=20){
         $pagingData = self::order('create_time desc')
             ->paginate($size, true, ['page' => $page]);
         return $pagingData ;
-    }
-
-    public function products()
-    {
-        return $this->belongsToMany('Product', 'order_product', 'product_id', 'order_id');
     }
 }

@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by 七月
+ * Created by 七月.
  * Author: 七月
- * Date: 2017/2/18
- * Time: 13:47
+ * Date: 2017/5/16
+ * Time: 6:08
  */
 
 namespace app\lib\exception;

@@ -1,20 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 七月
- * Date: 2017/2/12
- * Time: 18:29
+ * Created by 七月.
+ * Author: 七月
+ * Date: 2017/5/2
+ * Time: 2:15
  */
 
 namespace app\lib\exception;
 
-/**
- * Class ParameterException
- * 通用参数类异常错误
- */
+
 class ParameterException extends BaseException
 {
     public $code = 400;
+    public $msg = '参数错误';
     public $errorCode = 10000;
-    public $msg = "invalid parameters";
 }

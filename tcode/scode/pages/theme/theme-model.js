@@ -1,23 +1,22 @@
-/**
- * Created by jimmy on 17/2/26.
- */
-import {Base} from '../../utils/base.js';
+import { Base } from '../../utils/base.js';
 
 class Theme extends Base{
-    constructor(){
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    /*商品*/
-    getProductorData(id,callback){
-        var param={
-            url: 'theme/'+id,
-            sCallback:function(data){
-                callback && callback(data);
-            }
-        };
-        this.request(param);
-    }
-};
+  /*获取主题下的商品列表*/
+  /* 对应主题的id号*/
+  getProductsData(id, callback) {
+    var param = {
+      url: 'theme/' + id,
+      sCallback: function (data) {
+        callback && callback(data);
+      }
+    };
+    this.request(param);
+  }
 
-export {Theme};
+}
+
+export {Theme}

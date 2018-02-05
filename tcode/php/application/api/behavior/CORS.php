@@ -2,16 +2,12 @@
 /**
  * Created by 七月.
  * Author: 七月
- * 微信公号：小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/3/19
- * Time: 3:00
+ * Date: 2017/6/16
+ * Time: 20:41
  */
 
 namespace app\api\behavior;
 
-
-use think\Response;
 
 class CORS
 {

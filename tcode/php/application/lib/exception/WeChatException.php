@@ -1,20 +1,17 @@
 <?php
 /**
  * Created by 七月.
- * User: 七月
- * Date: 2017/2/14 我去，情人节，886214
- * Time: 1:03
+ * Author: 七月
+ * Date: 2017/5/22
+ * Time: 10:33
  */
 
 namespace app\lib\exception;
-use think\Exception;
 
-/**
- * 微信服务器异常
- */
+
 class WeChatException extends BaseException
 {
     public $code = 400;
-    public $msg = 'wechat unknown error';
+    public $msg = '微信服务器接口调用失败';
     public $errorCode = 999;
 }

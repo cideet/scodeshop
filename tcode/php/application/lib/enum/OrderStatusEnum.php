@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by 七月
+ * Created by 七月.
  * Author: 七月
- * 微信公号: 小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/3/7
- * Time: 16:10
+ * Date: 2017/6/2
+ * Time: 5:40
  */
 
 namespace app\lib\enum;
@@ -24,7 +22,4 @@ class OrderStatusEnum
 
     // 已支付，但库存不足
     const PAID_BUT_OUT_OF = 4;
-
-    // 已处理PAID_BUT_OUT_OF
-    const HANDLED_OUT_OF = 5;
 }

@@ -1,73 +1,59 @@
+// home.js
+
 import { Home } from 'home-model.js';
-var home = new Home(); //实例化 首页 对象
+
+var home = new Home();
+
 Page({
-    data: {
-        loadingHidden: false
-    },
-    onLoad: function () {
-        this._loadData();
-    },
 
-    /*加载所有数据*/
-    _loadData:function(callback){
-        var that = this;
+  /**
+   * 页面的初始数据
+   */
+  data: {
 
-        // 获得bannar信息
-        home.getBannerData((data) => {
-            that.setData({
-                bannerArr: data,
-            });
-        });
+  },
 
-        /*获取主题信息*/
-        home.getThemeData((data) => {
-            that.setData({
-                themeArr: data,
-                loadingHidden: true
-            });
-        });
+  onLoad: function () {
+    this._loadData();
+  },
 
-        /*获取单品信息*/
-        home.getProductorData((data) => {
-            that.setData({
-                productsArr: data
-            });
-            callback&&callback();
-        });
-    },
+  _loadData: function () {
+    var id = 1;
+    home.getBannerData(id, (res) => {
+      this.setData({
+        'bannerArr': res
+      });
+    });
 
-    /*跳转到商品详情*/
-    onProductsItemTap: function (event) {
-        var id = home.getDataSet(event, 'id');
-        wx.navigateTo({
-            url: '../product/product?id=' + id
-        })
-    },
+    home.getThemeData((res) => {
 
-    /*跳转到主题列表*/
-    onThemesItemTap: function (event) {
-        var id = home.getDataSet(event, 'id');
-        var name = home.getDataSet(event, 'name');
-        wx.navigateTo({
-            url: '../theme/theme?id=' + id+'&name='+ name
-        })
-    },
+      this.setData({
+        'themeArr': res
+      });
+    });
 
-    /*下拉刷新页面*/
-    onPullDownRefresh: function(){
-        this._loadData(()=>{
-            wx.stopPullDownRefresh()
-        });
-    },
+    home.getProductsData((data) => {
+      this.setData({
+        productsArr: data
+      });
+    });
 
-    //分享效果
-    onShareAppMessage: function () {
-        return {
-            title: '零食商贩 Pretty Vendor',
-            path: 'pages/home/home'
-        }
-    }
+  },
+
+  onProductsItemTap: function (event) {
+    var id = home.getDataSet(event, 'id');
+    wx.navigateTo({
+      url: '../product/product?id=' + id
+    });
+  },
+
+  onThemesItemTap: function (event) {
+    var id = home.getDataSet(event, 'id');
+    var name = home.getDataSet(event, 'name');
+    wx.navigateTo({
+      url: '../theme/theme?id=' + id + '&name=' + name
+    })
+  },
+
 
 })
-
-

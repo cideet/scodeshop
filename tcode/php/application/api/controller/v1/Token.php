@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by 七月
+ * Created by 七月.
  * Author: 七月
- * 微信公号: 小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/2/21
- * Time: 12:23
+ * Date: 2017/5/19
+ * Time: 17:57
  */
 
 namespace app\api\controller\v1;
@@ -13,29 +11,20 @@ namespace app\api\controller\v1;
 
 use app\api\service\AppToken;
 use app\api\service\UserToken;
-use app\api\service\Token as TokenService;
 use app\api\validate\AppTokenGet;
 use app\api\validate\TokenGet;
 use app\lib\exception\ParameterException;
+use app\api\service\Token as TokenService;
 
-/**
- * 获取令牌，相当于登录
- */
 class Token
 {
-    /**
-     * 用户获取令牌（登陆）
-     * @url /token
-     * @POST code
-     * @note 虽然查询应该使用get，但为了稍微增强安全性，所以使用POST
-     */
-    public function getToken($code='')
+    public function getToken($code = '')
     {
         (new TokenGet())->goCheck();
-        $wx = new UserToken($code);
-        $token = $wx->get();
+        $ut = new UserToken($code);
+        $token = $ut->get();
         return [
-            'token' => $token
+          'token'=>$token
         ];
     }
 
@@ -46,9 +35,6 @@ class Token
      */
     public function getAppToken($ac='', $se='')
     {
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        header('Access-Control-Allow-Methods: GET');
         (new AppTokenGet())->goCheck();
         $app = new AppToken();
         $token = $app->get($ac, $se);
@@ -69,5 +55,4 @@ class Token
             'isValid' => $valid
         ];
     }
-
 }

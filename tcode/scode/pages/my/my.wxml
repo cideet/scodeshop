@@ -1,5 +1,5 @@
 
-<view class="container my-container" hidden="{{!loadingHidden}}">
+<view class="container my-container">
   <view class="my-header">
     <image src="{{userInfo.avatarUrl}}"></image>
     <text class="name">{{userInfo.nickName}}</text>
@@ -7,7 +7,7 @@
   <!--地址管理-->
   <view class="my-address">
     <block wx:if="{{addressInfo}}">
-      <view class="item-title" ontap="editAddress">
+      <view class="item-title" bindtap="editAddress">
         地址管理
         <image src="../../imgs/icon/arrow@right.png"></image>
       </view>
@@ -24,7 +24,7 @@
       </view>
     </block>
     <block wx:else>
-      <view class="add-new-address" ontap="editAddress"><text class="icon">+</text><text>添加地址</text></view>
+      <view class="add-new-address" bindtap="editAddress"><text class="icon">+</text><text>添加地址</text></view>
     </block>
   </view>
 
@@ -33,11 +33,11 @@
     <view class="item-main">
       <block wx:for="{{orderArr}}">
         <view class="order-item">
-          <view class="order-header" ontap="showOrderDetailInfo" data-id="{{item.id}}">
+          <view class="order-header" bindtap="showOrderDetailInfo" data-id="{{item.id}}">
             <text>订单编号:</text>
             <text class="order-no-txt">{{item.order_no}}</text>
           </view>
-          <view class="order-main" ontap="showOrderDetailInfo" data-id="{{item.id}}">
+          <view class="order-main" bindtap="showOrderDetailInfo" data-id="{{item.id}}">
             <view class="item-left">
               <image src="{{item.snap_img}}"></image>
             </view>
@@ -53,13 +53,11 @@
           </view>
           <view class="order-bottom" wx:if="{{item.status==1}}">
             <text>实付:￥{{item.total_price}}</text>
-            <view class="pay" ontap="rePay" data-id="{{item.id}}" data-index="{{index}}">付款</view>
+            <view class="pay" bindtap="rePay" data-id="{{item.id}}" data-index="{{index}}">付款</view>
           </view>
         </view>
       </block>
     </view>
   </view>
+  
 </view>
-<loading hidden="{{loadingHidden}}">
-  加载中...
-</loading>

@@ -1,37 +1,43 @@
 <?php
+/**
+ * Created by 七月.
+ * Author: 七月
+ * Date: 2017/4/24
+ * Time: 3:52
+ */
+
 namespace app\lib\exception;
+
+
 use think\Exception;
 
-/**
- * Class BaseException
- * 自定义异常类的基类
- */
 class BaseException extends Exception
 {
+    // HTTP 状态码 404,200
     public $code = 400;
-    public $msg = 'invalid parameters';
-    public $errorCode = 999;
-    
-    public $shouldToClient = true;
 
-    /**
-     * 构造函数，接收一个关联数组
-     * @param array $params 关联数组只应包含code、msg和errorCode，且不应该是空值
-     */
-    public function __construct($params=[])
-    {
-        if(!is_array($params)){
-            return;
+    // 错误具体信息
+    public $msg = '参数错误';
+
+    // 自定义的错误码
+    public $errorCode = 10000;
+
+    public function __construct($params = []){
+        if( !is_array($params)){
+            return ;
+//            throw new Exception('参数必须是数组');
         }
         if(array_key_exists('code',$params)){
             $this->code = $params['code'];
         }
+
         if(array_key_exists('msg',$params)){
             $this->msg = $params['msg'];
         }
+
         if(array_key_exists('errorCode',$params)){
             $this->errorCode = $params['errorCode'];
         }
     }
-}
 
+}

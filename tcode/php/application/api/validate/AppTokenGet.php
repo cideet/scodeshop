@@ -1,11 +1,13 @@
 <?php
 /**
- * Created by 七月
- * User: 七月
- * Date: 2017/2/18
- * Time: 12:35
+ * Created by 七月.
+ * Author: 七月
+ * Date: 2017/6/16
+ * Time: 10:00
  */
+
 namespace app\api\validate;
+
 
 class AppTokenGet extends BaseValidate
 {

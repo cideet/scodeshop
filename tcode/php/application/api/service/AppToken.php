@@ -2,16 +2,15 @@
 /**
  * Created by 七月.
  * Author: 七月
- * 微信公号：小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/2/25
- * Time: 17:21
+ * Date: 2017/6/16
+ * Time: 10:01
  */
 
 namespace app\api\service;
+
+
 use app\api\model\ThirdApp;
 use app\lib\exception\TokenException;
-use think\Exception;
 
 class AppToken extends Token
 {
@@ -36,7 +35,7 @@ class AppToken extends Token
             return $token;
         }
     }
-    
+
     private function saveToCache($values){
         $token = self::generateToken();
         $expire_in = config('setting.token_expire_in');

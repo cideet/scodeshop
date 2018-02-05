@@ -1,46 +1,41 @@
 <?php
 /**
- * Created by 七月
- * User: 七月
- * Date: 2017/2/15
- * Time: 13:40
+ * Created by 七月.
+ * Author: 七月
+ * Date: 2017/4/17
+ * Time: 2:05
  */
 
 namespace app\api\controller\v1;
 
-
-use app\api\controller\BaseController;
-use app\api\validate\IDMustBePositiveInt;
+use app\api\model\Image;
+use app\api\service\Token;
+use app\api\validate\IDMustBePostiveInt;
 use app\api\model\Banner as BannerModel;
-use app\lib\exception\MissException;
+use app\lib\exception\BannerMissException;
+use think\Exception;
+use think\Log;
 
-/**
- * Banner资源
- */ 
-class Banner extends BaseController
+class Banner
 {
-//    protected $beforeActionList = [
-//        'checkPrimaryScope' => ['only' => 'getBanner']
-//    ];
-
     /**
-     * 获取Banner信息
-     * @url     /banner/:id
-     * @http    get
-     * @param   int $id banner id
-     * @return  array of banner item , code 200
-     * @throws  MissException
+     * 获取指定id的banner信息
+     * @url /banner/:id
+     * @http GET
+     * @id banner的id号
+     *
      */
     public function getBanner($id)
     {
-        $validate = new IDMustBePositiveInt();
-        $validate->goCheck();
-        $banner = BannerModel::getBannerById($id);
-        if (!$banner ) {
-            throw new MissException([
-                'msg' => '请求banner不存在',
-                'errorCode' => 40000
-            ]);
+  //  php think optimize:route
+
+// CDN
+
+        //AOP 面向切面编程
+        (new IDMustBePostiveInt())->goCheck();
+        $banner = BannerModel::getBannerByID($id);
+        if(!$banner){
+            throw new BannerMissException();
         }
         return $banner;
     }

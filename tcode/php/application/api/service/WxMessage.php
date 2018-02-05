@@ -2,10 +2,8 @@
 /**
  * Created by 七月.
  * Author: 七月
- * 微信公号：小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/3/5
- * Time: 13:26
+ * Date: 2017/6/16
+ * Time: 12:51
  */
 
 namespace app\api\service;
@@ -16,11 +14,11 @@ use think\Exception;
 class WxMessage
 {
     private $sendUrl = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?" .
-    "access_token=%s";
+"access_token=%s";
     private $touser;
     //不让子类控制颜色
     private $color = 'black';
-    
+
     protected $tplID;
     protected $page;
     protected $formID;
@@ -33,7 +31,7 @@ class WxMessage
         $token = $accessToken->get();
         $this->sendUrl = sprintf($this->sendUrl, $token);
     }
- 
+
     // 开发工具中拉起的微信支付prepay_id是无效的，需要在真机上拉起支付
     protected function sendMessage($openID)
     {
@@ -44,7 +42,7 @@ class WxMessage
             'page' => $this->page,
             'form_id' => $this->formID,
             'data' => $this->data,
-//            'color' => $this->color,
+            //            'color' => $this->color,
             'emphasis_keyword' => $this->emphasisKeyWord
         ];
         $result = curl_post($this->sendUrl, $data);
@@ -55,6 +53,4 @@ class WxMessage
             throw new Exception('模板消息发送失败,  ' . $result['errmsg']);
         }
     }
-    
-
 }

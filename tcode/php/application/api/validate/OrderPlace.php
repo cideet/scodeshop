@@ -2,20 +2,47 @@
 /**
  * Created by 七月.
  * Author: 七月
- * 微信公号：小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/2/25
- * Time: 19:25
+ * Date: 2017/5/27
+ * Time: 12:26
  */
 
 namespace app\api\validate;
 
 
 use app\lib\exception\ParameterException;
-use think\Exception;
 
 class OrderPlace extends BaseValidate
 {
+    protected $oProducts = [
+        [
+            'product_id' => 1,
+            'count' => 3
+        ],
+        [
+            'product_id' => 2,
+            'count' => 3
+        ],
+        [
+            'product_id' => 3,
+            'count' => 3
+        ]
+    ];
+
+    protected $products = [
+        [
+            'product_id' => 1,
+            'count' => 2
+        ],
+        [
+            'product_id' => 2,
+            'count' => 3
+        ],
+        [
+            'product_id' => 3,
+            'count' => 3
+        ]
+    ];
+
     protected $rule = [
         'products' => 'checkProducts'
     ];
@@ -27,11 +54,22 @@ class OrderPlace extends BaseValidate
 
     protected function checkProducts($values)
     {
-        if(empty($values)){
-            throw new ParameterException([
-                'msg' => '商品列表不能为空'
-            ]);
+        if (!is_array($values))
+        {
+            throw new ParameterException(
+                [
+                    'msg' => '商品参数不正确'
+                ]);
         }
+
+        if (empty($values))
+        {
+            throw new ParameterException(
+                [
+                    'msg' => '商品列表不能为空'
+                ]);
+        }
+
         foreach ($values as $value)
         {
             $this->checkProduct($value);
@@ -39,7 +77,7 @@ class OrderPlace extends BaseValidate
         return true;
     }
 
-    private function checkProduct($value)
+    protected function checkProduct($value)
     {
         $validate = new BaseValidate($this->singleRule);
         $result = $validate->check($value);
@@ -49,4 +87,5 @@ class OrderPlace extends BaseValidate
             ]);
         }
     }
+
 }

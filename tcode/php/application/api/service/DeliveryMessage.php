@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by 七月
+ * Created by 七月.
  * Author: 七月
- * 微信公号: 小楼昨夜又秋风
- * 知乎ID: 七月在夏天
- * Date: 2017/3/7
- * Time: 13:27
+ * Date: 2017/6/16
+ * Time: 12:39
  */
 
 namespace app\api\service;
@@ -13,14 +11,11 @@ namespace app\api\service;
 
 use app\api\model\User;
 use app\lib\exception\OrderException;
+use app\lib\exception\UserException;
 
 class DeliveryMessage extends WxMessage
 {
-    const DELIVERY_MSG_ID = 'your wx template ID';// 小程序模板消息ID号
-
-    //    private $productName;
-    //    private $devliveryTime;
-    //    private $order
+    const DELIVERY_MSG_ID ='';
 
     public function sendDeliveryMessage($order, $tplJumpPage = '')
     {
@@ -64,4 +59,5 @@ class DeliveryMessage extends WxMessage
         }
         return $user->openid;
     }
+
 }

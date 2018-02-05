@@ -1,85 +1,95 @@
 import { Category } from 'category-model.js';
-var category=new Category();  //实例化 home 的推荐页面
+var category = new Category();
+
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    transClassArr:['tanslate0','tanslate1','tanslate2','tanslate3','tanslate4','tanslate5'],
-    currentMenuIndex:0,
-    loadingHidden:false,
+    // categoryTypeArr: {}
+    currentMenuIndex: 0,
+    //字典，dictionary
+    loadedData: {}
   },
-  onLoad: function () {
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
     this._loadData();
   },
 
-  /*加载所有数据*/
-  _loadData:function(callback){
-    var that = this;
-    category.getCategoryType((categoryData)=>{
+  _loadData: function () {
 
-      that.setData({
-        categoryTypeArr: categoryData,
-        loadingHidden: true
+    category.getCategoryType((categoryData) => {
+
+      this.setData({
+        categoryTypeArr: categoryData
       });
 
-      that.getProductsByCategory(categoryData[0].id,(data)=>{
-        var dataObj= {
-          procucts: data,
-          topImgUrl: categoryData[0].img.url,
-          title: categoryData[0].name
-        };
-        that.setData({
-          loadingHidden: true,
-          categoryInfo0:dataObj
+      // 一定在回调里再进行获取分类详情的方法调用
+      category.getProductsByCategory(
+        categoryData[0].id, (data) => {
+
+          var dataObj = {
+            procucts: data,
+            topImgUrl: categoryData[0].img.url,
+            title: categoryData[0].name
+          };
+
+          this.setData({
+            categoryProducts: dataObj
+          })
+
+          this.data.loadedData[0] = dataObj;
         });
-        callback&& callback();
-      });
-    });
-  },
-
-  /*切换分类*/
-  changeCategory:function(event){
-    var index=category.getDataSet(event,'index'),
-        id=category.getDataSet(event,'id')//获取data-set
-    this.setData({
-      currentMenuIndex:index
     });
 
-    //如果数据是第一次请求
-    if(!this.isLoadedData(index)) {
-      var that=this;
-      this.getProductsByCategory(id, (data)=> {
-        that.setData(that.getDataObjForBind(index,data));
-      });
-    }
   },
 
-  isLoadedData:function(index){
-    if(this.data['categoryInfo'+index]){
+  // 判断当前分类下的商品数据是否已经被加载过
+  isLoadedData: function (index) {
+    if (this.data.loadedData[index]) {
       return true;
     }
     return false;
   },
 
-  getDataObjForBind:function(index,data){
-    var obj={},
-        arr=[0,1,2,3,4,5],
-        baseData=this.data.categoryTypeArr[index];
-    for(var item in arr){
-      if(item==arr[index]) {
-        obj['categoryInfo' + item]={
-          procucts:data,
-          topImgUrl:baseData.img.url,
-          title:baseData.name
-        };
+  changeCategory: function (event) {
 
-        return obj;
-      }
-    }
-  },
+    var index = category.getDataSet(event, 'index'),
+      id = category.getDataSet(event, 'id')//获取data-set
 
-  getProductsByCategory:function(id,callback){
-    category.getProductsByCategory(id,(data)=> {
-      callback&&callback(data);
+    this.setData({
+      currentMenuIndex: index
     });
+
+    if (!this.isLoadedData(index)) {
+      // 如果没有加载过当前分类的商品数据
+      category.getProductsByCategory(
+        id, (data) => {
+
+          var dataObj = {
+            procucts: data,
+            topImgUrl: this.data.categoryTypeArr[index].img.url,
+            title: this.data.categoryTypeArr[index].name
+          };
+
+          this.setData({
+            categoryProducts: dataObj
+          })
+
+          this.data.loadedData[index] = dataObj;
+        });
+    }
+    else{
+      // 已经加载过，直接读取
+      this.setData({
+        categoryProducts: this.data.loadedData[index]
+      })
+
+    }
   },
 
   /*跳转到商品详情*/
@@ -90,19 +100,10 @@ Page({
     })
   },
 
-  /*下拉刷新页面*/
-  onPullDownRefresh: function(){
-    this._loadData(()=>{
-      wx.stopPullDownRefresh()
-    });
-  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-  //分享效果
-  onShareAppMessage: function () {
-    return {
-      title: '零食商贩 Pretty Vendor',
-      path: 'pages/category/category'
-    }
   }
-
 })
