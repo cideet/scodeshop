@@ -78,6 +78,9 @@ function curl_get($url, &$httpCode = 0)
     return $file_contents;
 }
 
+/*
+ * 获取随机字符串
+ */
 function getRandChar($length)
 {
     $str = null;

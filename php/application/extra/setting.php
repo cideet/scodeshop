@@ -7,5 +7,6 @@
  */
 
 return [
-    'img_prefix' => 'http://127.0.0.3/images'
+    'img_prefix' => 'http://127.0.0.3/images',
+    'token_expire_in' => 7200
 ];
