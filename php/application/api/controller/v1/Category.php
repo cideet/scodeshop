@@ -15,6 +15,7 @@ class Category
 {
     /**
      * 获取全部分类
+     * http://127.0.0.3/index.php/api/v1/category/all
      * @url /category/all
      * @http GET
      * @id banner ID号

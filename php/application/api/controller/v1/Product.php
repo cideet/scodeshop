@@ -17,6 +17,7 @@ class Product
 {
     /**
      * 获取指定数量的最近商品
+     * http://127.0.0.3/index.php/api/v1/product/recent?count=10
      * @url /product/recent?count=:count
      * @param int $count
      * @return mixed

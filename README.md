@@ -18,14 +18,6 @@ xdebug.org -> download ->
 
 http://127.0.0.3/index.php/sample/test/hello <br>
 
-http://127.0.0.3/index.php/api/v1/banner/1 <br>
-http://127.0.0.3/index.php/api/v1/theme?ids=1,2,3 <br>
-http://127.0.0.3/index.php/api/v1/product/recent?count=10 <br>
-http://127.0.0.3/index.php/api/v1/category/all <br>
-http://127.0.0.3/index.php/api/v1/product/by_category?id=3 <br>
-http://127.0.0.3/index.php/api/v1/product/11 <br>
-
-
 999  未知错误 <br>
 1 开头为通用错误 <br>
 2 商品类错误 <br>

@@ -13,6 +13,11 @@ use app\api\validate\TokenGet;
 
 class Token
 {
+    /**
+     * 获取Token
+     * @param string $code
+     * @return array
+     */
     public function getToken($code = '')
     {
         (new TokenGet())->goCheck();

@@ -21,17 +21,51 @@
 
 use think\Route;
 
+/**
+ * 获取指定ID的banner信息
+ * http://127.0.0.3/index.php/api/v1/banner/1
+ */
 Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');
 //Route::get('api/v1/banner/:id', 'api/v1.Banner/getBanner');
+
+/*
+ * 获取所有专题
+ * http://127.0.0.3/index.php/api/v1/theme?ids=1,2,3
+ */
 Route::get('api/:version/theme', 'api/:version.Theme/getSimpleList');
+
+/**
+ * 获取单个专题
+ */
 Route::get('api/:version/theme/:id', 'api/:version.Theme/getComplexOne');
-Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
-Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
+
+/**
+ * 获取某分类下全部商品(不分页）
+ * http://127.0.0.3/index.php/api/v1/product/by_category?id=3
+ */
 Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
 
-//商品详情
+/**
+ * 商品详情
+ * http://127.0.0.3/index.php/api/v1/product/11
+ */
 Route::get('api/:version/product/:id', 'api/:version.Product/getOne');
 
+/**
+ * 获取指定数量的最近商品
+ * http://127.0.0.3/index.php/api/v1/product/recent?count=10
+ */
+Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
+
+/**
+ * 获取全部分类
+ * http://127.0.0.3/index.php/api/v1/category/all
+ */
+Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
+
+
+
+//获取Token
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 
 
