@@ -49,7 +49,7 @@ Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCat
  * 商品详情
  * http://127.0.0.3/index.php/api/v1/product/11
  */
-Route::get('api/:version/product/:id', 'api/:version.Product/getOne');
+Route::get('api/:version/product/:id', 'api/:version.Product/getOne', [], ['id' => '\d+']);  //只匹配正整数
 
 /**
  * 获取指定数量的最近商品
@@ -57,12 +57,18 @@ Route::get('api/:version/product/:id', 'api/:version.Product/getOne');
  */
 Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 
+////路由分组
+//Route::group('api/:version/product',function(){
+//    Route::get('/by_category', 'api/:version.Product/getAllInCategory');
+//    Route::get('/:id', 'api/:version.Product/getOne', [], ['id' => '\d+']);
+//    Route::get('/recent', 'api/:version.Product/getRecent');
+//});
+
 /**
  * 获取全部分类
  * http://127.0.0.3/index.php/api/v1/category/all
  */
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
-
 
 
 //获取Token
