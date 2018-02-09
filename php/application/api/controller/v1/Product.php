@@ -52,4 +52,19 @@ class Product
         $products = $products->hidden(['summary']);
         return $products;
     }
+
+    /**
+     * 商品详情
+     * @url /product/:id
+     * http://127.0.0.3/index.php/api/v1/product/11
+     */
+    public function getOne($id)
+    {
+        (new IDMustBePositiveInt())->goCheck();
+        $product = ProductModel::getProductDetail($id);
+        if (!$product) {
+            throw new ProductException();
+        }
+        return $product;
+    }
 }
