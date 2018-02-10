@@ -71,6 +71,9 @@ Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
 
 
+Route::get('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
+
+
 //获取Token
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 
