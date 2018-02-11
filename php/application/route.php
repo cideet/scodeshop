@@ -51,6 +51,12 @@ Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCat
  */
 Route::get('api/:version/product/:id', 'api/:version.Product/getOne', [], ['id' => '\d+']);  //只匹配正整数
 
+///**
+// * 获取指定数量的最近商品
+// * http://127.0.0.3/index.php/api/v1/product/recent/count/10
+// */
+//Route::get('api/:version/product/recent/count/:count', 'api/:version.Product/getRecent');
+
 /**
  * 获取指定数量的最近商品
  * http://127.0.0.3/index.php/api/v1/product/recent?count=10

@@ -8,13 +8,12 @@
 
 namespace app\index\controller;
 
-
 use think\Controller;
 
 class Index extends Controller
 {
     public function index()
     {
-        return 'index';
+        return "欢迎来到“三丰爱RestFul”";
     }
 }
