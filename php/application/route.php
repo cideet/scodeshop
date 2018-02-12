@@ -76,8 +76,13 @@ Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
  */
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
 
-
-Route::get('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
+/**
+ * 创建或更新地址
+ * post http://127.0.0.3/index.php/api/v1/address
+ * headers: token=>ab08d14e99f0eeb541671d3c5f0ddf45
+ * body: {"name":"qiyue1111","mobile":"13012345678","province":"中华大地","city":"成都","country":"武侯祠","detail":"狮王之傲旅店"}
+ */
+Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
 
 
 //获取Token

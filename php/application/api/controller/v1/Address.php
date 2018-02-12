@@ -19,13 +19,14 @@ class Address
     //创建或更新地址
     public function createOrUpdateAddress()
     {
-        (new AddressNew())->goCheck();
+        $validate = new AddressNew();
+        $validate->goCheck();
         $uid = TokenService::getCurrentUid();  //根据Token获取UID
         $user = UserModel::get($uid);
         if (!$user) {
             throw new UserException();
         }
-        $dataArray = getDatas();
+        $dataArray = $validate->getDataByRule(input('post.'));
         $userAddress = $user->address;
         if (!$userAddress) {
             $user->address()->save($dataArray);  //新增，模型的关联
@@ -33,6 +34,7 @@ class Address
             $user->address->save($dataArray);  //更新
         }
         //return $user;
-        return new SuccessMessage();
+        //return new SuccessMessage();  //状态码:200
+        return json(new SuccessMessage(), 201);  //手动更改状态码
     }
 }
