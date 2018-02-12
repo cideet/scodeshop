@@ -15,7 +15,7 @@ use think\Request;
 
 class Token
 {
-    //生成令牌
+    //生成Token
     public static function generateToken()
     {
         $randChar = getRandChar(32);
@@ -24,13 +24,7 @@ class Token
         return md5($randChar . $timestamp . $tokenSalt);
     }
 
-    //根据Token，获取用户ID
-    public static function getCurrentUid()
-    {
-        $uid = self::getCurrentTokenVar('uid');
-        return $uid;
-    }
-
+    //获取Token
     public static function getCurrentTokenVar($key)
     {
         $token = Request::instance()->header('token');
@@ -48,5 +42,13 @@ class Token
             }
         }
     }
+
+    //根据Token获取UID
+    public static function getCurrentUid()
+    {
+        $uid = self::getCurrentTokenVar('uid');
+        return $uid;
+    }
+
 
 }
