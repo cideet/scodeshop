@@ -17,6 +17,10 @@ use think\Controller;
 
 class Address extends Controller
 {
+    protected $beforeActionList = [
+        'first' => ['only' => 'second'],  //只有second这个方法，需要执行first方法
+    ];
+
     //创建或更新地址
     public function createOrUpdateAddress()
     {
