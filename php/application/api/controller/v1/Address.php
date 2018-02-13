@@ -13,8 +13,9 @@ use app\api\model\User as UserModel;
 use app\api\validate\AddressNew;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
+use think\Controller;
 
-class Address
+class Address extends Controller
 {
     //创建或更新地址
     public function createOrUpdateAddress()
