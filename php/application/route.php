@@ -84,9 +84,17 @@ Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories'
  */
 Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
 
-
-//获取Token
+/**
+ * 获取Token post
+ * 小程序的调试工具中获取的
+ */
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
+
+/**
+ *
+ */
+Route::post('api/:version/order', 'api/:version.Order/placeOrder');
+
 
 
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');

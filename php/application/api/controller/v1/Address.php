@@ -8,6 +8,7 @@
 
 namespace app\api\controller\v1;
 
+use app\api\controller\BaseController;
 use app\api\service\Token as TokenService;
 use app\api\model\User as UserModel;
 use app\api\validate\AddressNew;
@@ -18,27 +19,30 @@ use app\lib\exception\TokenException;
 use app\lib\exception\UserException;
 use think\Controller;
 
-class Address extends Controller
+class Address extends BaseController
 {
     protected $beforeActionList = [
         //'first' => ['only' => 'second'],  //只有second这个方法，需要执行first方法
         'checkPrimaryScope' => ['only' => 'createOrUpdateAddress']
     ];
 
-    //验证初始权限的作用域
-    protected function checkPrimaryScope()
-    {
-        $scope = TokenService::getCurrentTokenVar('scope');
-        if ($scope) {
-            if ($scope >= ScopeEnum::User) {
-                return true;
-            } else {
-                throw new ForbiddenException();
-            }
-        } else {
-            throw new TokenException();
-        }
-    }
+    //验证初始权限的作用域，前置方法
+//    protected function checkPrimaryScope(){
+//        TokenService::needExclusiveScope();
+//    }
+//    protected function checkPrimaryScope()
+//    {
+//        $scope = TokenService::getCurrentTokenVar('scope');
+//        if ($scope) {
+//            if ($scope >= ScopeEnum::User) {
+//                return true;
+//            } else {
+//                throw new ForbiddenException();
+//            }
+//        } else {
+//            throw new TokenException();
+//        }
+//    }
 
     //创建或更新地址
     public function createOrUpdateAddress()
