@@ -39,6 +39,9 @@ class Order extends BaseController
     public function placeOrder()
     {
         (new OrderPlace())->goCheck();
+        $products = input('post.products/a');  //获取数组
+        $uid = TokenService::getCurrentUid();
+        
     }
 
     // 做一次库存量检测
