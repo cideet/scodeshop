@@ -9,6 +9,7 @@
 namespace app\api\controller\v1;
 
 use app\api\controller\BaseController;
+use app\api\validate\OrderPlace;
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\ForbiddenException;
 use app\lib\exception\TokenException;
@@ -31,13 +32,13 @@ class Order extends BaseController
     protected $beforeActionList = [
         'checkExclusiveScope' => ['only' => 'placeOrder']
     ];
-    
+
     /**
      * 下单
      */
     public function placeOrder()
     {
-
+        (new OrderPlace())->goCheck();
     }
 
     // 做一次库存量检测
