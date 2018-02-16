@@ -9,10 +9,12 @@
 namespace app\api\service;
 
 
+use app\api\model\OrderProduct;
 use app\api\model\Product;
 use app\api\model\UserAddress;
 use app\lib\exception\OrderException;
 use app\lib\exception\UserException;
+use think\Exception;
 
 class Order
 {
@@ -32,7 +34,48 @@ class Order
             $status['order_id'] = -1;
             return $status;
         }
-        $orderSnap = $this->snapOrder();  //生成订单快照
+        $orderSnap = $this->snapOrder($status);  //生成订单快照
+    }
+
+    //生成订单
+    private function createOrder($snap)
+    {
+        try {
+            $orderNo = $this->makeOrderNo();
+            $order = new \app\api\model\Order();
+            $order->user_id = $this->uid;
+            $order->user_no = $orderNo;
+            $order->total_price = $snap['orderPrice'];
+            $order->total_count = $snap['orderCount'];
+            $order->snap_img = $snap['snapImg'];
+            $order->total_name = $snap['snapName'];
+            $order->total_address = $snap['totalAddress'];
+            $order->snap_items = json_encode($snap['pStatus']);
+            $order->save();  //写入数据库
+            $orderID = $order->id;  //读出订单ID
+            $create_time = $order->create_time;
+            foreach ($this->oProducts as &$p) {
+                $p['order_id'] = $orderID;
+            }
+            $orderProduct = new OrderProduct();
+            $orderProduct->saveAll($this->oProducts);
+            return [
+                'order_no' => $orderNo,
+                'order_id' => $orderId,
+                'create_time' => $create_time
+            ];
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    //生成订单号
+    public static function makeOrderNo()
+    {
+        $yCode = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
+        $orderSn =
+            $yCode[intval(date('Y')) - 2018] . strtoupper(dechex(date('m'))) . date('d') . substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('%02d', rand(0, 99));
+        return $orderSn;
     }
 
     //生成订单快照
