@@ -14,6 +14,7 @@ use app\api\model\Product;
 use app\api\model\UserAddress;
 use app\lib\exception\OrderException;
 use app\lib\exception\UserException;
+use think\Db;
 use think\Exception;
 
 class Order
@@ -44,6 +45,7 @@ class Order
     //生成订单
     private function createOrder($snap)
     {
+        Db::startTrans();
         try {
             $orderNo = $this->makeOrderNo();
             $order = new \app\api\model\Order();
@@ -56,6 +58,7 @@ class Order
             $order->snap_address = $snap['snapAddress'];
             $order->snap_items = json_encode($snap['pStatus']);
             $order->save();  //写入数据表order
+            //1/0;  //手动生成错误
             $orderID = $order->id;  //读出订单ID
             $create_time = $order->create_time;
             foreach ($this->oProducts as &$p) {
@@ -63,12 +66,14 @@ class Order
             }
             $orderProduct = new OrderProduct();
             $orderProduct->saveAll($this->oProducts);
+            Db::commit();
             return [
                 'order_no' => $orderNo,
                 'order_id' => $orderID,
                 'create_time' => $create_time
             ];
         } catch (Exception $ex) {
+            Db::rollback();
             throw $ex;
         }
     }
