@@ -30,7 +30,6 @@ class Order
         $this->products = $this->getProductsByOrder($oProducts);  //根据订单信息查询真实的商品信息
         $this->uid = $uid;
         $status = $this->getOrderStatus();  //获取订单的真实状态
-//        print_r($status);
         if (!$status['pass']) {  //库存量检测未通过
             $status['order_id'] = -1;
             return $status;
@@ -45,8 +44,6 @@ class Order
     //生成订单
     private function createOrder($snap)
     {
-//        print_r($snap);
-//        exit;
         try {
             $orderNo = $this->makeOrderNo();
             $order = new \app\api\model\Order();
@@ -76,41 +73,6 @@ class Order
         }
     }
 
-//Array
-//(
-//[orderPrice] => 0.02
-//[totalCount] => 2
-//[pStatus] => Array
-//(
-//[0] => Array
-//(
-//[id] => 1
-//[haveStock] => 1
-//[counts] => 1
-//[price] => 0.01
-//[name] => 芹菜 半斤
-//[totalPrice] => 0.01
-//[main_img_url] => http://127.0.0.3/images/product-vg@1.png
-//)
-//
-//[1] => Array
-//(
-//[id] => 2
-//[haveStock] => 1
-//[counts] => 1
-//[price] => 0.01
-//[name] => 梨花带雨 3个
-//[totalPrice] => 0.01
-//[main_img_url] => http://127.0.0.3/images/product-dryfruit@1.png
-//)
-//
-//)
-//
-//[snapAddress] => {"name":"qiyue1111","mobile":"13012345678","province":"\u4e2d\u534e\u5927\u5730","city":"\u6210\u90fd","country":"\u6b66\u4faf\u7960","detail":"\u72ee\u738b\u4e4b\u50b2\u65c5\u5e97","update_time":"1970-01-01 08:00:00"}
-//[snapName] => 芹菜 半斤等
-//[snapImg] => http://127.0.0.3/images/product-vg@1.png
-//)
-
     //生成订单号
     public static function makeOrderNo()
     {
@@ -123,8 +85,6 @@ class Order
     //生成订单快照
     private function snapOrder($status)
     {
-//        print_r($status);
-//        exit;
         $snap = [
             'orderPrice' => 0,
             'totalCount' => 0,
