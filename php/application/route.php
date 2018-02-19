@@ -91,7 +91,10 @@ Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress'
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 
 /**
- *
+ * 下单 post
+ * http://127.0.0.3/index.php/api/v1/order
+ * headers: token=>ab08d14e99f0eeb541671d3c5f0ddf45
+ * body: { "products": [{ "product_id": 1, "count": 1 }, { "product_id": 2, "count": 1 }] }
  */
 Route::post('api/:version/order', 'api/:version.Order/placeOrder');
 

@@ -13,11 +13,18 @@ use app\lib\exception\ParameterException;
 
 class OrderPlace extends BaseValidate
 {
-//    protected $products = [
-//        ['product_id' => 1, 'count' => 3],
-//        ['product_id' => 2, 'count' => 6],
-//        ['product_id' => 3, 'count' => 2]
-//    ];
+    protected $oProducts = [
+        ['product_id' => 1, 'count' => 3],
+        ['product_id' => 2, 'count' => 3],
+        ['product_id' => 3, 'count' => 3]
+    ];
+
+    protected $products = [
+        ['product_id' => 1, 'count' => 2],
+        ['product_id' => 2, 'count' => 3],
+        ['product_id' => 3, 'count' => 3]
+    ];
+
     protected $rule = [
         'products' => 'checkProducts'
     ];

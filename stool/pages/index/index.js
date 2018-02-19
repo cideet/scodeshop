@@ -63,31 +63,18 @@ Page({
         // that.getPreOrder(token, 'A303256065493535')
         wx.request({
             url: baseUrl + '/order',
-            header: {
-                token: token
-            },
-            data: {
-                products:
-                [
-                    {
-                        product_id: 1, count: 1
-                    },
-                    // },
-                    {
-                        product_id: 2, count: 1
-                    }
-                ]
-            },
+            header: { token: token },
+            data: { products: [{ product_id: 1, count: 1 }, { product_id: 2, count: 1 }] },
             method: 'POST',
             success: function (res) {
                 console.log(res.data);
-                if (res.data.pass) {
-                    wx.setStorageSync('order_id', res.data.order_id);
-                    that.getPreOrder(token, res.data.order_id);
-                }
-                else {
-                    console.log('订单未创建成功');
-                }
+                // if (res.data.pass) {
+                //     wx.setStorageSync('order_id', res.data.order_id);
+                //     that.getPreOrder(token, res.data.order_id);
+                // }
+                // else {
+                //     console.log('订单未创建成功');
+                // }
             }
         })
     },
