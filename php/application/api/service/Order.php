@@ -193,4 +193,17 @@ class Order
         return $products;
     }
 
+    /**
+     * 库存量检测 提供对外的一个方法
+     * @param $orderID
+     */
+    public function checkOrderStock($orderID)
+    {
+        $oProducts = OrderProduct::where('order_id', '=', $orderID)->select();
+        $this->oProducts = $oProducts;
+        $this->products = $this->getProductsByOrder($oProducts);
+        $status = $this->getOrderStatus();
+        return $status;
+    }
+
 }

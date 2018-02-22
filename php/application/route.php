@@ -98,6 +98,10 @@ Route::post('api/:version/token/user', 'api/:version.Token/getToken');
  */
 Route::post('api/:version/order', 'api/:version.Order/placeOrder');
 
+/**
+ * 请求预订单的信息 post
+ */
+Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
 
 
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');
