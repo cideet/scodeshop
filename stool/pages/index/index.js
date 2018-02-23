@@ -68,15 +68,42 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log(res.data);
-                // if (res.data.pass) {
-                //     wx.setStorageSync('order_id', res.data.order_id);
-                //     that.getPreOrder(token, res.data.order_id);
-                // }
-                // else {
-                //     console.log('订单未创建成功');
-                // }
+                if (res.data.pass) {
+                    wx.setStorageSync('order_id', res.data.order_id);
+                    that.getPreOrder(token, res.data.order_id);
+                } else {
+                    console.log('订单未创建成功');
+                }
             }
         })
+    },
+
+    getPreOrder: function (token, orderID) {
+        if (token) {
+            wx.request({
+                url: baseUrl + '/pay/pre_order',
+                method: 'POST',
+                header: { token: token },
+                data: { id: orderID },
+                success: function (res) {
+                    var preData = res.data;
+                    console.log(preData);
+                    // wx.requestPayment({
+                    //     timeStamp: preData.timeStamp.toString(),
+                    //     nonceStr: preData.nonceStr,
+                    //     package: preData.package,
+                    //     signType: preData.signType,
+                    //     paySign: preData.paySign,
+                    //     success: function (res) {
+                    //         console.log(res.data);
+                    //     },
+                    //     fail: function (error) {
+                    //         console.log(error);
+                    //     }
+                    // })
+                }
+            })
+        }
     },
 
     // 发货
@@ -112,39 +139,6 @@ Page({
                 console.log('session fail');
             }
         })
-    },
-
-
-    getPreOrder: function (token, orderID) {
-        if (token) {
-            wx.request({
-                url: baseUrl + '/pay/pre_order',
-                method: 'POST',
-                header: {
-                    token: token
-                },
-                data: {
-                    id: orderID
-                },
-                success: function (res) {
-                    var preData = res.data;
-                    wx.requestPayment({
-                        timeStamp: preData.timeStamp.toString(),
-                        nonceStr: preData.nonceStr,
-                        package: preData.package,
-                        signType: preData.signType,
-                        paySign: preData.paySign,
-                        success: function (res) {
-                            console.log(res.data);
-                        },
-                        fail: function (error) {
-                            console.log(error);
-                        }
-                    })
-                }
-            })
-        }
     }
-
 
 })

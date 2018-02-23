@@ -7,5 +7,6 @@
  */
 
 return [
-    'token_salt' => 't1234'
+    'token_salt' => 't1234',
+    'pay_back_url' => 'http://www.vdouw.com'
 ];

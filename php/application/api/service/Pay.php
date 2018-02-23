@@ -19,7 +19,7 @@ use think\Loader;
 use think\Log;
 
 //extend/WxPay/WxPay.Api.php
-Loader::import('WxPay.WxPay', EXTEND_PATH, 'Api.php');
+Loader::import('WxPay.WxPay', EXTEND_PATH, '.Api.php');
 
 class Pay
 {
@@ -42,6 +42,7 @@ class Pay
         if (!$status['pass']) {
             return $status;
         }
+        return $this->makeWxProOrder($status['orderPrice']);
     }
 
     private function makeWxProOrder($totalPrice)
@@ -68,9 +69,10 @@ class Pay
             Log::record('获取预支付订单失败', 'error');
         }
         //prepay_id
-        $this->recordPreOrder($wxOrder);
-        $signature = $this->sign($wxOrder);
-        return $signature;
+//        $this->recordPreOrder($wxOrder);
+//        $signature = $this->sign($wxOrder);
+//        return $signature;
+        return '';
     }
 
     //订单号检测

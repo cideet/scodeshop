@@ -6,9 +6,10 @@
  * Time: 11:35
  */
 
-namespace app\api\controller;
+namespace app\api\controller\v1;
 
-use app\api\validate\IDMustBePostiveInt;
+use app\api\controller\BaseController;
+use app\api\validate\IDMustBePositiveInt;
 use app\api\service\Pay as PayService;
 
 class Pay extends BaseController
@@ -18,9 +19,9 @@ class Pay extends BaseController
     ];
 
     //请求预订单的信息
-    public function getPreOrder()
+    public function getPreOrder($id = '')
     {
-        (new IDMustBePostiveInt())->goCheck();
+        (new IDMustBePositiveInt())->goCheck();
         $pay = new PayService($id);
         return $pay->pay();
     }
