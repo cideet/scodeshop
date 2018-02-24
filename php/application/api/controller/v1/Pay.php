@@ -42,12 +42,11 @@ class Pay extends BaseController
         //特点：post；xml格式；不会携带参数
 //        Log::('aaaaaaaaaaaaaaaaaaaaaa');
 //        throw new Exception('asdfasdfasdfsdf');
-//        $notify = new WxNotify();
-//        $notify->Handle();
+        $notify = new WxNotify();
+        $notify->Handle();
 
         $xmlData = file_get_contents('php://input');
-        $result = curl_post_raw('http:/z.cn/api/v1/pay/re_notify',
-            $xmlData);
+        $result = curl_post_raw('http:/127.0.0.3/index.php/api/v1/pay/re_notify', $xmlData);
     }
 
     public function redirectNotify()
