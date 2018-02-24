@@ -46,9 +46,9 @@ class WxNotify extends \WxPayNotify
     {
         if ($data['result_code'] == 'SUCCESS') {  //支付是否成功
             $orderNo = $data['out_trade_no'];  //订单号
-            Db::startTrans();
+            Db::startTrans();  //事务
             try {
-                $order = OrderModel::where('order_no', '=', $orderNo)->lock(true)->find();  //查询订单
+                $order = OrderModel::where('order_no', '=', $orderNo)->lock(true)->find();  //查询订单 锁
                 if ($order->status == 1) {  //订单没有被处理时
                     $service = new OrderService();
                     $stockStatus = $service->checkOrderStock($order->id);  //库存量检测
@@ -59,10 +59,10 @@ class WxNotify extends \WxPayNotify
                         $this->updateOrderStatus($order->id, false);
                     }
                 }
-                Db::commit();
+                Db::commit();  //事务
                 return true;
             } catch (Exception $ex) {
-                Db::rollback();
+                Db::rollback();  //事务
                 Log::error($ex);
                 return false;
             }
