@@ -103,6 +103,16 @@ Route::post('api/:version/order', 'api/:version.Order/placeOrder');
  */
 Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
 
+/**
+ * 微信支付的回调地址
+ */
+Route::post('api/:version/pay/notify', 'api/:version.Pay/receiveNotify');
+
+/**
+ * ggg
+ */
+Route::post('api/:version/pay/re_notify', 'api/:version.Pay/redirectNotify');
+
 
 //Route::rule('路由表达式', '路由地址', '请求类型', '路由参数（数组）', '变量规则（数组）');
 

@@ -9,7 +9,7 @@
 namespace app\api\controller\v1;
 
 use app\api\model\Banner as BannerModel;
-use app\api\validate\IDMustBePositiveInt;
+use app\api\validate\IDMustBePostiveInt;
 use app\lib\exception\BannerMissException;
 use think\Exception;
 
@@ -23,7 +23,7 @@ class Banner
      */
     public function getBanner($id)
     {
-        (new IDMustBePositiveInt())->goCheck();
+        (new IDMustBePostiveInt())->goCheck();
         //$banner = new BannerModel();  //实例化后，对应表banner了
         //$banner = $banner->get($id);
 //        $banner = BannerModel::get($id);  //建议使用静态方法

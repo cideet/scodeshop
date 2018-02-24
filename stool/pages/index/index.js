@@ -88,19 +88,15 @@ Page({
                 success: function (res) {
                     var preData = res.data;
                     console.log(preData);
-                    // wx.requestPayment({
-                    //     timeStamp: preData.timeStamp.toString(),
-                    //     nonceStr: preData.nonceStr,
-                    //     package: preData.package,
-                    //     signType: preData.signType,
-                    //     paySign: preData.paySign,
-                    //     success: function (res) {
-                    //         console.log(res.data);
-                    //     },
-                    //     fail: function (error) {
-                    //         console.log(error);
-                    //     }
-                    // })
+                    wx.requestPayment({
+                        timeStamp: preData.timeStamp.toString(),
+                        nonceStr: preData.nonceStr,
+                        package: preData.package,
+                        signType: preData.signType,
+                        paySign: preData.paySign,
+                        success: function (res) { console.log(res.data); },
+                        fail: function (error) { console.log(error); }
+                    })
                 }
             })
         }
