@@ -16,7 +16,7 @@ class Order extends BaseModel
 
     //protected $createTime = 'create_timestamp';  //如果自己另外命名的话
 
-    // 读取器：将snap_items从json转成数组
+    //读取器：将snap_items从json转成数组
     public function getSnapItemsAttr($value)
     {
         if (empty($value)) {
@@ -25,6 +25,7 @@ class Order extends BaseModel
         return json_decode($value);
     }
 
+    //读取器：将snap_address从json转成数组
     public function getSnapAddressAttr($value)
     {
         if (empty($value)) {
