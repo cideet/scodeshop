@@ -68,12 +68,12 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log(res.data);
-                if (res.data.pass) {
-                    wx.setStorageSync('order_id', res.data.order_id);
-                    that.getPreOrder(token, res.data.order_id);
-                } else {
-                    console.log('订单未创建成功');
-                }
+                // if (res.data.pass) {
+                //     wx.setStorageSync('order_id', res.data.order_id);
+                //     that.getPreOrder(token, res.data.order_id);
+                // } else {
+                //     console.log('订单未创建成功');
+                // }
             }
         })
     },

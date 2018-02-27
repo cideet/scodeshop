@@ -99,6 +99,21 @@ Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 Route::post('api/:version/order', 'api/:version.Order/placeOrder');
 
 /**
+ * 根据用户ID查询其订单（分页）
+ * http://127.0.0.3/index.php/api/v1/order/by_user?page=1&size=5
+ */
+Route::get('api/:version/order/by_user', 'api/:version.Order/getSummaryByUser');
+
+/**
+ * 根据订单ID，获取订单详情
+ * http://127.0.0.3/index.php/api/v1/order/12
+ */
+Route::get('api/:version/order/:id', 'api/:version.Order/getDetail', [], ['id'=>'\d+']);
+
+Route::get('api/:version/order/paginate', 'api/:version.Order/getSummary');
+Route::put('api/:version/order/delivery', 'api/:version.Order/delivery');
+
+/**
  * 请求预订单的信息 post
  */
 Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
