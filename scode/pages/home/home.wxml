@@ -1,5 +1,11 @@
 <!--pages/home/home.wxml-->
 <view>
-    <swiper></swiper>
+    <swiper class="swiper" indicator-dots="true" autoplay="true">
+        <block wx:for="{{bannerArr}}">
+            <swiper-item class="banner-item">
+                <image mode="aspectFill" src="{{item.img.url}}" class="item-image"></image>
+            </swiper-item>
+        </block>
+    </swiper>
     <view>111111</view>
 </view>
