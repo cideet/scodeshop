@@ -21,12 +21,14 @@ Page({
 
     _loadData: function () {
         var id = 1;
-        home.getBannerData(id, this.callBack);
+        home.getBannerData(id, function (res) {
+            console.log(res);
+        });
     },
 
-    callBack: function (res) {
-        console.log(res);
-    },
+    // callBack: function (res) {
+    //     console.log(res);
+    // },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
