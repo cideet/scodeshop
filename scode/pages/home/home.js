@@ -31,7 +31,7 @@ Page({
         });
         home.getProductsData((data) => {
             console.log(data);
-            this.setData({ productsArr: data });
+            this.setData({ 'productsArr': data });
         })
     },
 
