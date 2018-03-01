@@ -28,7 +28,7 @@ use think\Route;
 Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');
 //Route::get('api/v1/banner/:id', 'api/v1.Banner/getBanner');
 
-/*
+/**
  * 获取所有专题
  * http://127.0.0.3/index.php/api/v1/theme?ids=1,2,3
  */
@@ -36,6 +36,7 @@ Route::get('api/:version/theme', 'api/:version.Theme/getSimpleList');
 
 /**
  * 获取单个专题
+ * http://127.0.0.3/index.php/api/v1/theme/2  这个有点问题
  */
 Route::get('api/:version/theme/:id', 'api/:version.Theme/getComplexOne');
 

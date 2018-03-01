@@ -29,6 +29,10 @@ Page({
             console.log(res);
             this.setData({ 'themeArr': res });
         });
+        home.getProductsData((data) => {
+            console.log(data);
+            this.setData({ productsArr: data });
+        })
     },
 
     // callBack: function (res) {

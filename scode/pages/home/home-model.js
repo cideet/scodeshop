@@ -24,6 +24,15 @@ class Home extends Base {
         this.request(params);
     }
 
+    //获取指定数量的最近商品
+    getProductsData(callback) {
+        var param = {
+            url: 'product/recent',
+            sCallback: function (data) { callback && callback(data); }
+        };
+        this.request(param);
+    }
+
     // getBannerData(id, callBack) {
     //     wx.request({
     //         url: 'http://127.0.0.3/index.php/api/v1/banner/' + id,
