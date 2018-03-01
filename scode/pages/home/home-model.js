@@ -6,12 +6,20 @@ class Home extends Base {
         super();  //调用基类的构造函数
     }
 
-    getBannerData(id, callBack) {
+    //获取banner
+    getBannerData(id, callback) {
         var params = {
             url: 'banner/' + id,
-            sCallBack: function (res) {
-                callBack && callBack(res.items);
-            }
+            sCallback: function (res) { callback && callback(res.items); }
+        };
+        this.request(params);
+    }
+
+    //首页主题
+    getThemeData(callback) {
+        var params = {
+            url: 'theme?ids=1,2,3',
+            sCallback: function (data) { callback && callback(data); }
         };
         this.request(params);
     }

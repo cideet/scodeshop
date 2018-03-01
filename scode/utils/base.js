@@ -3,7 +3,7 @@ import { Config } from '../utils/config.js';
 
 class Base {
     constructor() {
-        this.baseRequestUrl = 'http://127.0.0.3/index.php/api/v1/';
+        this.baseRequestUrl = Config.restUrl;
     }
 
     request(params) {
@@ -20,9 +20,9 @@ class Base {
                 'token': wx.getStorageSync('token')
             },
             success: function (res) {
-                params.sCallBack && params.sCallBack(res.data);
-                // if (params.sCallBack) {
-                //     params.sCallBack(res);
+                params.sCallback && params.sCallback(res.data);
+                // if (params.sCallback) {
+                //     params.sCallback(res);
                 // }
             },
             fail: function (err) {

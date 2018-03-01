@@ -25,6 +25,10 @@ Page({
             console.log(res);
             this.setData({ 'bannerArr': res });
         });
+        home.getThemeData((res) => {
+            console.log(res);
+            this.setData({ 'themeArr': res });
+        });
     },
 
     // callBack: function (res) {
