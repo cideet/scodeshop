@@ -23,14 +23,15 @@ Page({
         var id = options.id;  //获取页面传参
         console.log(id);
         this.data.id = id;
-        // this._loadData();
+        this._loadData();
     },
 
     _loadData: function () {
         product.getDetailInfo(this.data.id, (data) => {
-            console.log(cart.getCartTotalCounts());
+            console.log(data);
+            // console.log(cart.getCartTotalCounts());
             this.setData({
-                cartTotalCounts: cart.getCartTotalCounts(),
+                // cartTotalCounts: cart.getCartTotalCounts(),
                 product: data
             });
         });
@@ -72,6 +73,5 @@ Page({
             url: '/pages/cart/cart'
         });
     }
-
 
 })
