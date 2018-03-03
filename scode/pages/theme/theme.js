@@ -22,6 +22,7 @@ Page({
     },
 
     onReady: function () {
+        //动态设置导航栏标题
         wx.setNavigationBarTitle({ title: this.data.name });
     },
 
