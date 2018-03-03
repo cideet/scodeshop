@@ -29,10 +29,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": 0,
+					"id": -1,
 					"name": "product",
-					"pathName": "pages/product/product",
-					"query": "id=18"
+					"pathName": "pages/category/category",
+					"query": ""
 				}
 			]
 		}

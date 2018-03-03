@@ -240,7 +240,8 @@
 .properties-name {
     width: 160rpx;
     color: #808080;
-    text-align: center;
+    text-align: right;
+    padding-right: 10rpx;
 }
 
 .properties-detail {
