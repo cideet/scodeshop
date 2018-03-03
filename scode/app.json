@@ -39,5 +39,9 @@
                 "text": "我的"
             }
         ]
-    }
+    },
+    "borderStyle": "white",
+    "selectedColor": "#AB956D",
+    "color": "#989898",
+    "backgroundColor": "#F5F5F5"
 }

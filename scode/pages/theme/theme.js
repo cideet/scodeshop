@@ -7,9 +7,7 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-
-    },
+    data: {},
 
     /**
      * 生命周期函数--监听页面加载
@@ -20,27 +18,21 @@ Page({
         this.data.id = id;
         this.data.name = name;
         console.log(id + ' | ' + name);
-        // this._loadData();
+        this._loadData();
     },
 
     onReady: function () {
-        wx.setNavigationBarTitle({
-            title: this.data.name,
-        })
+        wx.setNavigationBarTitle({ title: this.data.name });
     },
 
     _loadData: function () {
         theme.getProductsData(this.data.id, (data) => {
-            this.setData({
-                themeInfo: data
-            });
+            this.setData({ themeInfo: data });
         });
     },
 
     onProductsItemTap: function (event) {
         var id = theme.getDataSet(event, 'id');
-        wx.navigateTo({
-            url: '../product/product?id=' + id
-        })
+        wx.navigateTo({ url: '../product/product?id=' + id });
     }
 })
