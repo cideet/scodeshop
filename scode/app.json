@@ -3,7 +3,8 @@
         "pages/home/home",
         "pages/product/product",
         "pages/theme/theme",
-        "pages/category/category"
+        "pages/category/category",
+        "pages/cart/cart"
     ],
     "window": {
         "navigationBarBackgroundColor": "#AB956D",
@@ -28,7 +29,7 @@
                 "text": "分类"
             },
             {
-                "pagePath": "pages/home/home",
+                "pagePath": "pages/cart/cart",
                 "iconPath": "imgs/toolbar/cart.png",
                 "selectedIconPath": "imgs/toolbar/cart@selected.png",
                 "text": "购物车"
