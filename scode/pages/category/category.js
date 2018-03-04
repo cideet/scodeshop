@@ -7,10 +7,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        // categoryTypeArr: {}
+        categoryTypeArr: {},
         currentMenuIndex: 0,
-        //字典，dictionary
-        loadedData: {}
+        loadedData: {}   //字典(key=>value)，dictionary
     },
 
     /**
@@ -33,10 +32,10 @@ Page({
                 this.data.loadedData[0] = dataObj;
             });
         });
-    },
+    },  
 
     // 判断当前分类下的商品数据是否已经被加载过
-    isLoadedData: function (index) {
+    isLoadedData: function (index) {  //index->某个分类的序号
         if (this.data.loadedData[index]) {
             return true;
         }
@@ -45,10 +44,9 @@ Page({
 
     changeCategory: function (event) {
         var index = category.getDataSet(event, 'index');
-        var id = category.getDataSet(event, 'id');  //获取data-set
+        var id = category.getDataSet(event, 'id');
         this.setData({ currentMenuIndex: index });
-        if (!this.isLoadedData(index)) {
-            // 如果没有加载过当前分类的商品数据
+        if (!this.isLoadedData(index)) {  //如果没有加载过当前分类的商品数据
             category.getProductsByCategory(id, (data) => {
                 var dataObj = {
                     procucts: data,
@@ -58,11 +56,8 @@ Page({
                 this.setData({ categoryProducts: dataObj });
                 this.data.loadedData[index] = dataObj;
             });
-        }
-        else {
-            // 已经加载过，直接读取
+        } else {  //已经加载过，直接读取
             this.setData({ categoryProducts: this.data.loadedData[index] });
-
         }
     },
 
