@@ -14,7 +14,7 @@ class Cart extends Base {
     add(item, counts) {
         var cartData = this.getCartDataLocal(this._storageKeyName);
         var isHasInfo = this._isHasThatOne(item.id, cartData);
-        if (isHarInfo.index == -1) {
+        if (isHasInfo.index == -1) {
             item.counts = counts;
             item.selectStatus = true;  //选中状态
             cartData.push(item);
@@ -27,12 +27,24 @@ class Cart extends Base {
     /**
      * 从缓存中读取购物车数据
      */
-    getCartDataFromLocal() {
+    getCartDataLocal() {
         var res = wx.getStorageSync(this._storageKeyName);
         if (!res) {
             res = [];
         }
         return res;
+    }
+
+    /**
+     * 计算购物车内商品总数量
+     */
+    getCartTotalCounts() {
+        var data = wx.getStorageSync(this._storageKeyName);
+        var counts=0;
+        for (let i = 0; i < data.length; i++) {
+            counts += Number(data[i].counts);
+        }
+        return counts;
     }
 
     /**

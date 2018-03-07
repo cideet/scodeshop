@@ -1,8 +1,8 @@
 // product.js
 import { Product } from 'product-model.js';
-// import { Cart } from '../cart/cart-model.js';
+import { Cart } from '../cart/cart-model.js';
 var product = new Product();
-// var cart = new Cart();
+var cart = new Cart();
 
 Page({
 
@@ -28,10 +28,10 @@ Page({
 
     _loadData: function () {
         product.getDetailInfo(this.data.id, (data) => {
-            console.log(data);
+            // console.log(data);
             // console.log(cart.getCartTotalCounts());
             this.setData({
-                // cartTotalCounts: cart.getCartTotalCounts(),
+                cartTotalCounts: cart.getCartTotalCounts(),
                 product: data
             });
         });
@@ -48,15 +48,18 @@ Page({
         this.setData({ currentTabsIndex: index });
     },
 
+    /**
+     * 加入购物车
+     */
     onAddingToCartTap: function (event) {
         this.addToCart();
-        var counts =
-            this.data.cartTotalCount + this.data.productCount;
+        var counts = this.data.cartTotalCount + this.data.productCount;
         this.setData({
             cartTotalCounts: cart.getCartTotalCounts()
         });
     },
 
+    //将添加到购物车的商品，组合成对象，存入storage
     addToCart: function () {
         var tempObj = {};
         var keys = ['id', 'name', 'main_img_url', 'price'];

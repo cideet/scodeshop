@@ -15,7 +15,7 @@
         "enablePullDownRefresh": false
     },
     "tabBar": {
-        "list": [
+        "list": [  
             {
                 "pagePath": "pages/home/home",
                 "text": "首页",
