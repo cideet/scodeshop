@@ -19,6 +19,12 @@ Page({
         // 小程序不关闭，只执行一次
     },
 
+    onHide: function () {
+        //解决离开页面时，记录商品的selectStatus值
+        // wx.setStorageSync('cart', this.data.cartData);
+        cart.execSetStorageSync(this.data.cartData);
+    },
+
     /**
      * 生命周期函数--监听页面显示
      */
@@ -103,10 +109,10 @@ Page({
 
     //改变数量
     changeCounts: function (event) {
-        var id = cart.getDataSet(event, 'id'),
-            type = cart.getDataSet(event, 'type'),
-            index = this._getProductIndexById(id),
-            counts = 1;
+        var id = cart.getDataSet(event, 'id');
+        var type = cart.getDataSet(event, 'type');
+        var index = this._getProductIndexById(id);
+        var counts = 1;
         if (type == 'add') {
             cart.addCounts(id);
         } else {
@@ -118,11 +124,11 @@ Page({
     },
 
     delete: function (event) {
-        var id = cart.getDataSet(event, 'id'),
-            index = this._getProductIndexById(id);
+        var id = cart.getDataSet(event, 'id')
+        var index = this._getProductIndexById(id);
         this.data.cartData.splice(index, 1);  //删除某一项商品
         this._resetCartData();
-        cart.delete(id);
+        cart.delete(id);  //缓存中删除
     },
 
     submitOrder: function (event) {
@@ -130,6 +136,5 @@ Page({
             url: '../order/order?account=' + this.data.account + '&from=cart'
         });
     }
-
 
 })

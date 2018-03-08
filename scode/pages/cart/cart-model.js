@@ -1,3 +1,5 @@
+// cart-model.js负责与服务器的交互，和修改localStorage
+
 import { Base } from '../../utils/base.js';
 
 class Cart extends Base {
@@ -72,6 +74,7 @@ class Cart extends Base {
      * 修改商品数目
      * id - {int} 商品id
      * counts -{int} 数目
+     * 私有方法，不对外提供接口
      */
     _changeCounts(id, counts) {
         var cartData = this.getCartDataFromLocal(),
@@ -94,6 +97,10 @@ class Cart extends Base {
         this._changeCounts(id, -1);
     };
 
+    /**
+     * 删除商品
+     * ids可以是数组
+     */
     delete(ids) {
         if (!(ids instanceof Array)) {
             ids = [ids];
@@ -106,8 +113,13 @@ class Cart extends Base {
             }
         }
         wx.setStorageSync(this._storageKeyName, cartData);
-    }
+    };
 
+    /*本地缓存 保存／更新*/
+    execSetStorageSync(data) {
+        wx.setStorageSync(this._storageKeyName, data);
+    };
+    
 }
 
 export { Cart };
