@@ -12,7 +12,7 @@ class Cart extends Base {
      * counts 商品数量
      */
     add(item, counts) {
-        var cartData = this.getCartDataLocal(this._storageKeyName);
+        var cartData = this.getCartDataFromLocal(this._storageKeyName);
         var isHasInfo = this._isHasThatOne(item.id, cartData);
         if (isHasInfo.index == -1) {
             item.counts = counts;
@@ -27,7 +27,7 @@ class Cart extends Base {
     /**
      * 从缓存中读取购物车数据
      */
-    getCartDataLocal() {
+    getCartDataFromLocal(flag) {
         var res = wx.getStorageSync(this._storageKeyName);
         if (!res) {
             res = [];
@@ -37,19 +37,24 @@ class Cart extends Base {
 
     /**
      * 计算购物车内商品总数量
+     * flag=true -> 考虑商品选择状态
      */
-    getCartTotalCounts() {
+    getCartTotalCounts(flag) {
         var data = wx.getStorageSync(this._storageKeyName);
-        var counts=0;
+        var counts = 0;
         for (let i = 0; i < data.length; i++) {
-            counts += Number(data[i].counts);
+            if (flag) {
+                if (data[i].selectStatus) {
+                    counts += Number(data[i].counts);
+                }
+            } else {
+                counts += data[i].counts;
+            }
         }
         return counts;
     }
 
-    /**
-     * 判断某个商品是否已经被添加到购物车中
-     */
+    //判断某个商品是否已经被添加到购物车中
     _isHasThatOne(id, arr) {
         var item;
         var result = { index: -1 };
@@ -61,6 +66,46 @@ class Cart extends Base {
             }
         }
         return result;
+    }
+
+    /**
+     * 修改商品数目
+     * id - {int} 商品id
+     * counts -{int} 数目
+     */
+    _changeCounts(id, counts) {
+        var cartData = this.getCartDataFromLocal(),
+            hasInfo = this._isHasThatOne(id, cartData);
+        if (hasInfo.index != -1) {
+            if (hasInfo.data.counts > 1) {
+                cartData[hasInfo.index].counts += counts;
+            }
+        }
+        wx.setStorageSync(this._storageKeyName, cartData);  //更新本地缓存
+    };
+
+    //增加商品数目
+    addCounts(id) {
+        this._changeCounts(id, 1);
+    };
+
+    //购物车减
+    cutCounts(id) {
+        this._changeCounts(id, -1);
+    };
+
+    delete(ids) {
+        if (!(ids instanceof Array)) {
+            ids = [ids];
+        }
+        var cartData = this.getCartDataFromLocal();
+        for (let i = 0; i < ids.length; i++) {
+            var hasInfo = this._isHasThatOne(ids[i], cartData);
+            if (hasInfo.index != -1) {
+                cartData.splice(hasInfo.index, 1);  //删除数组某一项
+            }
+        }
+        wx.setStorageSync(this._storageKeyName, cartData);
     }
 
 }
