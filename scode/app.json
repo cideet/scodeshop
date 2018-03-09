@@ -4,7 +4,8 @@
         "pages/product/product",
         "pages/theme/theme",
         "pages/category/category",
-        "pages/cart/cart"
+        "pages/cart/cart",
+        "pages/order/order"
     ],
     "window": {
         "navigationBarBackgroundColor": "#AB956D",
@@ -15,7 +16,7 @@
         "enablePullDownRefresh": false
     },
     "tabBar": {
-        "list": [  
+        "list": [
             {
                 "pagePath": "pages/home/home",
                 "text": "首页",
