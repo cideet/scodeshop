@@ -34,6 +34,16 @@ class Cart extends Base {
         if (!res) {
             res = [];
         }
+        //在下单的时候过滤不下单的商品，
+        if (flag) {
+            var newRes = [];
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].selectStatus) {
+                    newRes.push(res[i]);
+                }
+            }
+            res = newRes;
+        }
         return res;
     }
 
@@ -119,7 +129,7 @@ class Cart extends Base {
     execSetStorageSync(data) {
         wx.setStorageSync(this._storageKeyName, data);
     };
-    
+
 }
 
 export { Cart };
