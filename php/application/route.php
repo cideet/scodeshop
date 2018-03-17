@@ -92,6 +92,11 @@ Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress'
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 
 /**
+ * 验证Token
+ */
+Route::post('api/:version/token/verify', 'api/:version.Token/verifyToken');
+
+/**
  * 下单 post
  * http://127.0.0.3/index.php/api/v1/order
  * headers: token=>ab08d14e99f0eeb541671d3c5f0ddf45
