@@ -8,12 +8,11 @@
 
 namespace app\api\service;
 
-use app\api\model\User as UserModel;
-
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\TokenException;
 use app\lib\exception\WeChatException;
 use think\Exception;
+use app\api\model\User as UserModel;
 
 /**
  * 微信登录
@@ -127,10 +126,10 @@ class UserToken extends Token
     // 需要认真思考
     private function processLoginError($wxResult)
     {
-        throw new WeChatException([
-            'msg' => $wxResult['errmsg'],
-            'errorCode' => $wxResult['errcode']
-        ]);
+//        throw new WeChatException([
+//            'msg' => $wxResult['errmsg'],
+//            'errorCode' => $wxResult['errcode']
+//        ]);
     }
 
 }
