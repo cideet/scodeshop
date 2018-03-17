@@ -1,9 +1,9 @@
 import { Cart } from '../cart/cart-model.js';
-// import { Order } from '../order/order-model.js';
-// import { Address } from '../../utils/address.js';
+import { Order } from '../order/order-model.js';
+import { Address } from '../../utils/address.js';
 var cart = new Cart();
-// var order = new Order();
-// var address = new Address();
+var order = new Order();
+var address = new Address();
 
 Page({
 
@@ -27,6 +27,34 @@ Page({
             productsArr: productsArr,
             account: this.data.account,
             orderStatus: 0
+        });
+    },
+
+    //添加或编辑收货地址
+    editAddress: function (event) {
+        var that = this;
+        wx.chooseAddress({
+            success: function (res) {
+                console.log(res);
+                var addressInfo = {
+                    name: res.userName,
+                    mobile: res.telNumber,
+                    totalDetail: address.setAddressInfo(res)
+                }
+                that._bindAddressInfo(addressInfo);  //保存地址
+                address.submitAddress(res, (flag) => {
+                    if (!flag) {
+                        that.showTips('操作提示', '地址信息更新失败！');
+                    }
+                });
+            }
+        })
+    },
+
+    /*绑定地址信息*/
+    _bindAddressInfo: function (addressInfo) {
+        this.setData({
+            addressInfo: addressInfo
         });
     },
 
