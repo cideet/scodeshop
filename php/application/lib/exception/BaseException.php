@@ -22,7 +22,7 @@ class BaseException extends Exception
             return;
             // throw new Exception('参数必须是数组');
         }
-        if (array_key_exists('code', $param)) {
+        if (array_key_exists('code', $param)) {  //array_key_exists()函数判断某个数组中是否存在指定的key
             $this->code = $param['code'];
         }
         if (array_key_exists('msg', $param)) {
