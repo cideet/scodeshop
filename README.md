@@ -1,11 +1,12 @@
 
 ##############################################################
 # commerce
-# https://coding.imooc.com/class/chapter/251.html#Anchor
+# ttps://coding.imooc.com/class/chapter/251.html#Anchor
 ##############################################################
 小程序注册邮件 commerce_minicode@vdouw.com
 APPID wxee123885c45afa3c
 APPSECRET 5186993798cd389422cb17cff387a038
+支付的话，用企业小程序
 
 
 ##############################################################
