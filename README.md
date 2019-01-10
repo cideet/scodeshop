@@ -8,6 +8,12 @@ APPID wxee123885c45afa3c
 APPSECRET 5186993798cd389422cb17cff387a038
 支付的话，用企业小程序
 
+display:flex;
+flex-direction:row; 横向排列
+flex-direction:row-reverse; 横向倒序
+flex-direction:column; 纵向排列
+flex-direction:column-reverse; 纵向倒序
+
 
 
 ##############################################################
