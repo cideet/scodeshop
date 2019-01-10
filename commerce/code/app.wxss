@@ -1,31 +1,30 @@
 /**app.wxss**/
 
 .container {
-    display: flex;
-    /* 横向排列 */
-    flex-direction: row;
-    /* 横向倒序 */
-    /* flex-direction: row-reverse; */
-    /* 纵向排列 */
-    flex-direction: column;
-    /* 纵向倒序 */
-    flex-direction: column-reverse;
+  display: flex;
+  height: 400rpx;
+  width: 100%;
+  background: black;
+  flex-direction:row;
+  align-items: center;
+  justify-content:center;
+  align-items:stretch;
 }
 
 .container .item {
-    width: 100rpx;
-    height: 100rpx;
-    background: red;
+  width: 100rpx;
+  /* height: 100rpx; */
+  background: red;
 }
 
 .container .item:nth-child(3n+1) {
-    background: red;
+  background: red;
 }
 
 .container .item:nth-child(3n+2) {
-    background: yellow;
+  background: yellow;
 }
 
 .container .item:nth-child(3n) {
-    background: blue;
+  background: blue;
 }

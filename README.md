@@ -13,7 +13,17 @@ flex-direction:row; 横向排列
 flex-direction:row-reverse; 横向倒序
 flex-direction:column; 纵向排列
 flex-direction:column-reverse; 纵向倒序
-
+justify-content:flex-start; 左右或上下对齐
+justify-content:flex-end; 左右或上下对齐
+justify-content:center; 左右或上下居中
+justify-content:space-between; 两端对齐
+justify-content:space-around; 等距分布
+align-items:center;justify-content:center; 水平垂直居中
+flex-direction:row;align-items:flex-start;justify-content:center; 水平居中垂直向上
+flex-direction:column-reverse;align-items:flex-start;justify-content:center; 水平向左垂直居中
+# flex-direction:row; 垂直是主轴，水平是交叉轴
+# flex-direction:column; 水平是主轴，垂直是交叉轴
+align-items:stretch; 子元素高度100%（子元素没设置高度的情况下）
 
 
 ##############################################################
