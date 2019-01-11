@@ -25,6 +25,10 @@ flex-direction:column-reverse;align-items:flex-start;justify-content:center; 水
 # flex-direction:column; 水平是主轴，垂直是交叉轴
 align-items:stretch; 子元素高度100%（子元素没设置高度的情况下）
 
+page{font-family:PingFangSC-Thin;}
+
+
+
 
 ##############################################################
 # music
